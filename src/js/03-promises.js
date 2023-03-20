@@ -22,18 +22,18 @@ refs.form.addEventListener('submit', (event) => {
   const step = Number(refs.form.elements.step.value);
   const amount = Number(refs.form.elements.amount.value);
   
-  let position = 0;
-  let subDelay = delay;
-  for (let i = 1; i <= amount ; i += 1) {
-    position += i;
-    subDelay += step;
 
-    createPromise(position, subDelay)
-      .then(({ position, subDelay }) => {
-    console.log(`✅ Fulfilled promise ${position} in ${subDelay}ms`);
+  
+  for (let i = 0; i <= (amount -1); i += 1) {
+    let subDelay = step * i + delay;
+    
+
+    createPromise( i, subDelay)
+      .then(({ i, subDelay }) => {
+    console.log(`✅ Fulfilled promise ${i} in ${subDelay}ms`);
   })
   .catch(({ position, subDelay }) => {
-    console.log(`❌ Rejected promise ${position} in ${subDelay}ms`);
+    console.log(`❌ Rejected promise ${i} in ${subDelay}ms`);
   });
 }
 event.currentTarget.reset();
