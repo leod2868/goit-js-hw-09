@@ -20,7 +20,7 @@ refs.form.addEventListener('submit', (event) => {
   event.preventDefault();
   const delay = Number(refs.form.elements.delay.value);
   const step = Number(refs.form.elements.step.value);
-  const amound = Number(refs.form.elements.amound.value);
+  const amound = Number(refs.form.elements.amount.value);
   
   let position = 1;
   let subDelay = delay;
