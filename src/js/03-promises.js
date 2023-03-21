@@ -29,11 +29,11 @@ refs.form.addEventListener('submit', (event) => {
     subDelay += step * i;
 
     createPromise( position, subDelay)
-    .then(({ position, subDelay }) => {
-    console.log(`✅ Fulfilled promise ${position} in ${subDelay}ms`);
+    .then(({ position, delay }) => {
+    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
   })
-  .catch(({ position, subDelay }) => {
-    console.log(`❌ Rejected promise ${position} in ${subDelay}ms`);
+  .catch(({ position, delay }) => {
+    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
   });
 }
 event.currentTarget.reset();
