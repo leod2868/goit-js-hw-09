@@ -26,7 +26,7 @@ refs.form.addEventListener('submit', (event) => {
   
   for (let i = 0; i <= amount -1; i += 1) {
     position += i;
-    subDelay += step * i;
+    subDelay += step ;
 
     createPromise( position, subDelay)
     .then(({ position, delay }) => {
