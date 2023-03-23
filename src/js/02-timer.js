@@ -28,12 +28,14 @@ startBtn.disabled = true;
   },
 };
 
+
+
 const startTime = selectedDates[0];
 
 const timer = {
   intervalId : null ,
   start() {
-    
+
     startBtn.disabled = true;
     inputDate.disabled = true;
 
