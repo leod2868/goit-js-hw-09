@@ -9,9 +9,12 @@ hoursRef = document.querySelector('span[data-hours]');
 minsRef = document.querySelector('span[data-minutes]');
 secsRef = document.querySelector('span[data-seconds]');
    
-flatpickr('#datetime-picker', options);
+
 
 startBtn.disabled = true;
+
+let startTime = null;
+let onStartTime = null;
 
  const options = {
   enableTime: true,
@@ -20,7 +23,8 @@ startBtn.disabled = true;
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
-    if (selectedDates[0] < Date.now()) {
+    startTime = selectedDates[0];
+    if ( selectedDates[0] < new Date()) {
       Notiflix.Notify.failure('Please choose a date in the future');
       return;
     }
@@ -28,20 +32,22 @@ startBtn.disabled = true;
   },
 };
 
+flatpickr('#datetime-picker', options);
 
 
-const startTime = selectedDates[0];
 
 const timer = {
-  intervalId : null ,
+  intervalId: null,
+  
   start() {
 
+    onStartTime = startTime.getTime()
     startBtn.disabled = true;
     inputDate.disabled = true;
 
      this.intervalId = setInterval(() => {
        const currentTime = Date.now();
-       const deltaTime = startTime - currentTime;
+       const deltaTime = onStartTime - currentTime;
        const timeConvert = convertMs(deltaTime);
        updateTime(timeConvert);
        if (deltaTime === 0) { 
